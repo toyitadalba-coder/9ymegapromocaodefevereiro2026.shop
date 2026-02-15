@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mega Feirão</title>
+
+<style>
+:root {
+    --bg: #001a14;
+    --card: #00261c;
+    --primary: #00ff88;
+    --primary-soft: #00cc6a;
+    --text: #e6fff5;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at center, #003d2e, #001a14);
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+}
+
+/* CARD */
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px 25px;
+    background: var(--card);
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(0,255,136,0.3);
+    box-shadow: 0 0 50px rgba(0,255,136,0.25);
+    animation: fade 0.8s ease;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER */
+.badge {
+    color: #00ff88;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+}
+
+.title {
+    margin-top: 10px;
+    font-size: 34px;
+    font-weight: 900;
+    color: var(--primary);
+}
+
+.subtitle {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* STATUS */
+.status {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #00ff88;
+}
+
+/* PROGRESS */
+.progress-box {
+    margin-top: 15px;
+    width: 100%;
+    height: 10px;
+    background: #001f18;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff88, #66ffb3);
+    box-shadow: 0 0 12px rgba(0,255,136,0.9);
+}
+
+/* PERCENT */
+.percent {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* BOTÃO */
+.cta {
+    margin-top: 30px;
+}
+
+.cta a {
+    display: inline-block;
+    padding: 16px 40px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #00ff88, #66ffb3);
+    color: #003322;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    box-shadow: 0 0 15px rgba(0,255,136,0.7);
+}
+
+.cta a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(0,255,136,1);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="badge">🔥 OFERTA EXCLUSIVA</div>
+
+    <div class="title">MEGA FEIRÃO</div>
+    <div class="subtitle">As melhores promoções estão sendo liberadas...</div>
+
+    <div id="status" class="status">🔎 Verificando ofertas...</div>
+
+    <div class="progress-box">
+        <div id="progress" class="progress"></div>
+    </div>
+
+    <div id="percent" class="percent">0%</div>
+
+    <div class="cta">
+        <a href="https://yinimorcar-hub.github.io/megapromocaodefevereiro2026/">
+            ENTRAR NO FEIRÃO
+        </a>
+    </div>
+</div>
+
+<script>
+let percent = 0;
+const progress = document.getElementById("progress");
+const percentText = document.getElementById("percent");
+const statusText = document.getElementById("status");
+
+const statuses = [
+    "🔎 Verificando ofertas...",
+    "⚙️ Preparando promoções...",
+    "🔥 Liberando descontos...",
+    "✅ Tudo pronto!"
+];
+
+const loading = setInterval(() => {
+    percent++;
+    progress.style.width = percent + "%";
+    percentText.innerText = percent + "%";
+
+    if (percent === 30) statusText.innerText = statuses[1];
+    if (percent === 60) statusText.innerText = statuses[2];
+    if (percent === 100) {
+        statusText.innerText = statuses[3];
+        clearInterval(loading);
+    }
+}, 25);
+</script>
+
+</body>
+</html>
